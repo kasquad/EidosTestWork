@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  s3-api:
+    image: 's3-api'
+    hostname: a3-api
+    ports: 
+      - "8080:80"
+    environment:
+      "DefaultPostgresConnectionString": "Host=postgres;Database=minio-db;Username=postgres;Password=minioPassword;"
+      MINIO_ENDPOINT: "minio:9000"
+      MINIO_ROOT_USER: "root"
+      MINIO_ROOT_PASSWORD: "12345678"
+      POSTGRES_MINIO_EVENTS_TABLE: "files"
+      
+    depends_on:
+      - minio-s3
+      
+  minio-s3:
+    image: minio/minio
+    hostname: minio
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: 12345678
+      
+      MINIO_NOTIFY_POSTGRES_ENABLE_MINIODB: "on"
+      MINIO_NOTIFY_POSTGRES_CONNECTION_STRING_MINIODB: "host=postgres dbname=minio-db user=postgres password=minioPassword port=5426 sslmode=disable"
+      MINIO_NOTIFY_POSTGRES_TABLE_MINIODB: "files"
+      MINIO_NOTIFY_POSTGRES_FORMAT_MINIODB: "namespace"
+      
+    command: server --console-address ":9090" /data;
+    depends_on:
+      - minio-api-db
+  
+  minio-mc:
+    image: minio/mc
+    depends_on:
+      - minio-s3
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio http://minio:9000 root 12345678;
+
+      /usr/bin/mc mb myminio/default --ignore-existing;
+      /usr/bin/mc policy download myminio/default;
+      
+      /usr/bin/mc event add --event "put,delete" myminio/default arn:minio:sqs::MINIODB:postgresql --ignore-existing;
+      exit 0;
+      "
+  
+  minio-api-db: 
+    image: postgres:15.2
+    hostname: postgres
+    ports:
+      - "5426:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: minioPassword
+      POSTGRES_DB: minio-db
+      POSTGRES_MINIO_EVENTS_TABLE: "files"
+    command: "-c log_statement=all"
+    
+volumes:
+  minio_storage: { }

@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2989CA6E-F56F-4F84-B505-6129BC6F6901}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{7C648F55-763D-4843-A8C9-5460C29D3E2A}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+		Dockerfile = Dockerfile
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EidosTestWork.S3Api", "src\EidosTestWork.S3Api\EidosTestWork.S3Api.csproj", "{DF4119C3-3E02-41B0-A252-40E6D6F442DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EidosTestWork.Persistence", "src\EidosTestWork.Persistence\EidosTestWork.Persistence.csproj", "{FBA45500-B905-4835-B05F-D69853454308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EidosTestWork.Application", "src\EidosTestWork.Application\EidosTestWork.Application.csproj", "{D96F2B14-1FF7-47C8-871B-91D0676F5827}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF4119C3-3E02-41B0-A252-40E6D6F442DB} = {2989CA6E-F56F-4F84-B505-6129BC6F6901}
+		{FBA45500-B905-4835-B05F-D69853454308} = {2989CA6E-F56F-4F84-B505-6129BC6F6901}
+		{D96F2B14-1FF7-47C8-871B-91D0676F5827} = {2989CA6E-F56F-4F84-B505-6129BC6F6901}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF4119C3-3E02-41B0-A252-40E6D6F442DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4119C3-3E02-41B0-A252-40E6D6F442DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4119C3-3E02-41B0-A252-40E6D6F442DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4119C3-3E02-41B0-A252-40E6D6F442DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA45500-B905-4835-B05F-D69853454308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA45500-B905-4835-B05F-D69853454308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA45500-B905-4835-B05F-D69853454308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA45500-B905-4835-B05F-D69853454308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96F2B14-1FF7-47C8-871B-91D0676F5827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96F2B14-1FF7-47C8-871B-91D0676F5827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96F2B14-1FF7-47C8-871B-91D0676F5827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96F2B14-1FF7-47C8-871B-91D0676F5827}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
