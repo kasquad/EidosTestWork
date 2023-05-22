@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using EidosTestWork.Application.Abstractions.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Minio;
@@ -15,7 +16,7 @@ public static class ServiceCollectionExtension
                 .WithEndpoint(Environment.GetEnvironmentVariable("MINIO_ENDPOINT"))
                 .WithCredentials(
                     Environment.GetEnvironmentVariable("MINIO_ROOT_USER"),
-                    Environment.GetEnvironmentVariable("MINIO_ROOT_USER_PASSWORD"))
+                    Environment.GetEnvironmentVariable("MINIO_ROOT_PASSWORD"))
                 .WithSSL(false)
                 .Build()
         );

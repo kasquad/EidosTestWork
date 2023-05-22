@@ -3,7 +3,7 @@ version: '3.8'
 services:
   s3-api:
     image: 's3-api'
-    hostname: a3-api
+    hostname: s3-api
     ports: 
       - "8080:80"
     environment:
@@ -12,10 +12,10 @@ services:
       MINIO_ROOT_USER: "root"
       MINIO_ROOT_PASSWORD: "12345678"
       POSTGRES_MINIO_EVENTS_TABLE: "files"
-      
+
     depends_on:
       - minio-s3
-      
+
   minio-s3:
     image: minio/minio
     hostname: minio
@@ -29,10 +29,10 @@ services:
       MINIO_ROOT_PASSWORD: 12345678
       
       MINIO_NOTIFY_POSTGRES_ENABLE_MINIODB: "on"
-      MINIO_NOTIFY_POSTGRES_CONNECTION_STRING_MINIODB: "host=postgres dbname=minio-db user=postgres password=minioPassword port=5426 sslmode=disable"
+      MINIO_NOTIFY_POSTGRES_CONNECTION_STRING_MINIODB: "host=postgres dbname=minio-db user=postgres password=minioPassword port=5432 sslmode=disable"
       MINIO_NOTIFY_POSTGRES_TABLE_MINIODB: "files"
       MINIO_NOTIFY_POSTGRES_FORMAT_MINIODB: "namespace"
-      
+    
     command: server --console-address ":9090" /data;
     depends_on:
       - minio-api-db
@@ -52,7 +52,7 @@ services:
       exit 0;
       "
   
-  minio-api-db: 
+  minio-api-db:
     image: postgres:15.2
     hostname: postgres
     ports:
@@ -63,6 +63,6 @@ services:
       POSTGRES_DB: minio-db
       POSTGRES_MINIO_EVENTS_TABLE: "files"
     command: "-c log_statement=all"
-    
+
 volumes:
   minio_storage: { }

@@ -1,4 +1,8 @@
-﻿namespace EidosTestWork.OrderApi.Infrastructure.StartupFilters;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+
+namespace EidosTestWork.OrderApi.Infrastructure.StartupFilters;
 
 public class SwaggerStartupFilter : IStartupFilter
 {

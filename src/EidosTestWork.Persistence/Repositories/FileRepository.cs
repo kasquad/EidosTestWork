@@ -1,4 +1,8 @@
-﻿using EidosTestWork.Application.Abstractions.Repositories;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using EidosTestWork.Application.Abstractions.Repositories;
 using EidosTestWork.Application.Helpers;
 using EidosTestWork.Application.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,19 +17,14 @@ public sealed class FileRepository : IFileRepository
     {
         _context = context;
     }
-
-    public async Task<IEnumerable<string>> GetFileNamesAsync(
-        CancellationToken cancellationToken = default
-        )
+    public async Task<IEnumerable<string>> GetFileNamesAsync(CancellationToken cancellationToken = default)
     {
         return await _context.FilesDescription
             .Select(f => f.Path)
             .ToListAsync(cancellationToken: cancellationToken);
     }
 
-    public async Task<IEnumerable<FileDescription>> GetFilesDescriptionsAsync(
-        CancellationToken cancellationToken = default
-        )
+    public async Task<IEnumerable<FileDescription>> GetFilesDescriptionsAsync(CancellationToken cancellationToken = default)
     {
         return await _context.FilesDescription
             .ToListAsync(cancellationToken: cancellationToken);

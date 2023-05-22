@@ -1,4 +1,5 @@
-﻿using EidosTestWork.Application.Models;
+﻿using System;
+using EidosTestWork.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

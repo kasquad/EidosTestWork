@@ -1,8 +1,9 @@
-﻿using EidosTestWork.Application.Abstractions.Messaging;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EidosTestWork.Application.Abstractions.Messaging;
 using EidosTestWork.Application.Abstractions.Storage;
 using EidosTestWork.Application.Helpers;
 using Minio;
-using Minio.Exceptions;
 
 namespace EidosTestWork.Application.Upload.Queries.GetFileUploadLink;
 

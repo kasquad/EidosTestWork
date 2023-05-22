@@ -1,4 +1,5 @@
-﻿using EidosTestWork.Application.Abstractions.Messaging;
+﻿using System.Collections.Generic;
+using EidosTestWork.Application.Abstractions.Messaging;
 
 namespace EidosTestWork.Application.Upload.Queries.GetFilesList;
 

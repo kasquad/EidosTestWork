@@ -2,6 +2,8 @@ using EidosTestWork.Application.Abstractions.Storage;
 using EidosTestWork.Application.Extensions;
 using EidosTestWork.OrderApi.Infrastructure.Extensions;
 using EidosTestWork.Persistence.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
